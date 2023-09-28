@@ -1,22 +1,55 @@
 import "./App.css";
-import Checkbox from "./components/Checkbox";
-
-const PRODUCTS = [
-  { category: "Fruits", price: "$1", stocked: true, name: "Apple" },
-  { category: "Fruits", price: "$1", stocked: true, name: "Dragonfruit" },
-  { category: "Fruits", price: "$2", stocked: false, name: "Passionfruit" },
-  { category: "Vegetables", price: "$2", stocked: true, name: "Spinach" },
-  { category: "Vegetables", price: "$4", stocked: false, name: "Pumpkin" },
-  { category: "Vegetables", price: "$1", stocked: true, name: "Peas" },
-];
+import { useEffect, useState } from "react";
+import Checkbox from "../src/components/useState/forms/Checkbox";
+import Input from "../src/components/useState/forms/Input";
 
 function App() {
+  const [showInput, setShowInput] = useState(true);
+
   return (
     <>
-      <form action="">
-        <Checkbox />
-      </form>
+      <Checkbox
+        checked={showInput}
+        onChange={setShowInput}
+        id="showInput"
+        label="Afficher le champs titre"
+      />
+
+      {showInput && <EditTitle />}
+      <div style={{ height: "300vw" }}></div>
     </>
+  );
+}
+
+function EditTitle() {
+  const [title, setTitle] = useState("");
+  const [firstname, setFirstname] = useState("");
+  const [y, setY] = useState(0);
+
+  useEffect(() => {
+    console.log("title");
+    document.title = title;
+  }, [title]);
+
+  useEffect(() => {
+    document.addEventListener("scroll", () => {
+      setY(window.scrollY);
+    });
+  }, []);
+
+  return (
+    <div>
+      <div style={{ position: "fixed" }}>Scroll: {y}</div>
+      <br />
+
+      <Input
+        value={title}
+        onChange={setTitle}
+        placeholder="Modifier le titre de la page"
+      />
+
+      <Input value={firstname} onChange={setFirstname} placeholder="Prénom" />
+    </div>
   );
 }
 
