@@ -1,0 +1,7 @@
+useMemo est un hook de gestion d'état dans React qui permet d'optimiser les 
+performances en mémorisant le résultat d'une opération de calcul coûteuse. 
+Il est principalement utilisé pour éviter le recalcul inutile de valeurs 
+calculées lorsqu'un composant fonctionnel est rendu à nouveau.
+
+pour optimier l'affichage et ne pas provoquer des changements 
+inutillement quand on manipule d'autres components

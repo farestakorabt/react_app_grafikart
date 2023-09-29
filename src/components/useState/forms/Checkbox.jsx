@@ -7,7 +7,7 @@
  * @constructor
  */
 
-export default function Checkbox({ checked, onChange, label, id }) {
+export function Checkbox({ checked, onChange, label, id }) {
   return (
     <div>
       <input

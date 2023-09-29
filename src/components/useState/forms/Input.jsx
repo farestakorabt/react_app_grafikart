@@ -6,13 +6,20 @@
  * @constructor
  */
 
-export default function Input({ placeholder, value, onChange }) {
+import { useId } from "react";
+
+export function Input({ placeholder, value, onChange, label }) {
+  
+  const id = useId();
+
   return (
     <div>
+      <label htmlFor={id}>{label}</label>
       <input
         type="text"
         className=""
         value={value}
+        id={id}
         placeholder={placeholder}
         onChange={(e) => onChange(e.target.value)}
       />

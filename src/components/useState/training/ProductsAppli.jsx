@@ -3,6 +3,7 @@ import "../../../App.css";
 import { Checkbox } from "../forms/Checkbox";
 import { ProductCategoryRow } from "../products/ProductCategoryRow";
 import { ProductRow } from "../products/ProductRow";
+import { ErrorBoundary } from "react-error-boundary";
 
 const PRODUCTS = [
   { category: "Fruits", price: "1", stocked: true, name: "Apple" },
@@ -41,8 +42,22 @@ function ProductsAppli() {
         showStockedOnly={showStockedOnly}
         setShowStockedOnlyChange={setShowStockedOnly}
       />
-      <ProductTable products={visibleProducts} />
+      <ErrorBoundary
+        FallBackComponent={AlertError}
+        onReset={() => console.log("rest")}
+      >
+        <ProductTable products={visibleProducts} />
+      </ErrorBoundary>
     </>
+  );
+}
+
+function AlertError({ error, resetErrorBoundary }) {
+  return (
+    <div style={{ color: "red" }}>
+      {error.toString()}
+      <button onClick={resetErrorBoundary}>Reset</button>
+    </div>
   );
 }
 
